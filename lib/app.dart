@@ -15,39 +15,49 @@ class _AppState extends State<App> {
   int _notaFinal = 0;
   final _perguntas = const [
     {
-      'texto': "Pergunta 1",
+      'texto': "Qual é a linguagem de programação usada pelo Flutter ?",
       'respostas': [
-        {"texto": 'r1', "nota": 0},
-        {"texto": 'r2', "nota": 0},
-        {"texto": 'r3', "nota": 0},
-        {"texto": 'r4', "nota": 0},
+        {"texto": 'Java', "nota": 0},
+        {"texto": 'Swift', "nota": 0},
+        {"texto": 'Kotlin', "nota": 0},
+        {"texto": 'Dart ', "nota": 1},
       ]
     },
     {
-      'texto': "Pergunta 2",
+      'texto': "O que é um widget no Flutter ?",
       'respostas': [
-        {"texto": 'r1', "nota": 0},
-        {"texto": 'r2', "nota": 0},
-        {"texto": 'r3', "nota": 0},
-        {"texto": 'r4', "nota": 0},
+        {"texto": 'Um elemento de interface do usuário', "nota": 1},
+        {"texto": 'Um banco de dados', "nota": 0},
+        {"texto": 'Um servidor web', "nota": 0},
+        {"texto": 'Um sistema operacional', "nota": 0},
       ]
     },
     {
-      'texto': "Pergunta 3",
+      'texto': "O que é o hot reload no Flutter ?",
       'respostas': [
-        {"texto": 'r1', "nota": 0},
-        {"texto": 'r2', "nota": 0},
-        {"texto": 'r3', "nota": 0},
-        {"texto": 'r4', "nota": 0},
+        {
+          "texto":
+              'Uma funcionalidade que mostra alterações no código imediatamente',
+          "nota": 1
+        },
+        {
+          "texto": 'Um recurso que permite que você crie layouts responsivos',
+          "nota": 0
+        },
+        {"texto": 'Um widget para exibir imagens', "nota": 0},
+        {
+          "texto": 'Um banco de dados para armazenar dados do usuário',
+          "nota": 0
+        },
       ]
     },
     {
-      'texto': "Pergunta 4",
+      'texto': "Como você adiciona uma imagem a um aplicativo Flutter ?",
       'respostas': [
-        {"texto": 'r1', "nota": 0},
-        {"texto": 'r2', "nota": 0},
-        {"texto": 'r3', "nota": 0},
-        {"texto": 'r4', "nota": 0},
+        {"texto": 'Usando o widget Image.asset ou Image.network', "nota": 1},
+        {"texto": 'Usando o widget Text', "nota": 0},
+        {"texto": 'Usando o widget Container', "nota": 0},
+        {"texto": 'Usando o widget ListView', "nota": 0},
       ]
     },
   ];
@@ -62,6 +72,13 @@ class _AppState extends State<App> {
         print("Nota Final $_notaFinal");
       }
     }
+  }
+
+  void _reiniciar() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _notaFinal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -89,7 +106,7 @@ class _AppState extends State<App> {
                 perguntaSelecionada: _perguntaSelecionada,
                 responder: _responder,
               )
-            : const Resultado(),
+            : Resultado(total: _notaFinal, reiniciar: _reiniciar),
       ),
     );
   }
